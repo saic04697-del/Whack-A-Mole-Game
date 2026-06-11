@@ -1,0 +1,134 @@
+:root {
+    --neon-pink: #ff0055;
+    --neon-blue: #00f0ff;
+    --neon-green: #39ff14;
+    --neon-yellow: #ffaa00;
+    --dark-bg: #0a0612;
+    --panel-bg: rgba(22, 13, 38, 0.85);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+body {
+    background: radial-gradient(circle at center, #1b0f3a 0%, var(--dark-bg) 70%);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px 0;
+    perspective: 1200px;
+}
+
+.hidden { display: none !important; }
+
+/* ================= LOGIN PANEL ================= */
+.login-container { width: 100%; max-width: 420px; padding: 10px; }
+.tilt-card {
+    background: var(--panel-bg);
+    padding: 40px 30px;
+    border-radius: 16px;
+    border: 2px solid var(--neon-pink);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 0, 85, 0.3);
+    backdrop-filter: blur(10px);
+    transform: rotateX(10deg);
+}
+h2 { color: var(--neon-pink); text-shadow: 0 0 10px var(--neon-pink); font-size: 1.8rem; text-align: center; letter-spacing: 2px; }
+.subtitle { text-align: center; font-size: 0.8rem; color: #8a7fa4; margin-bottom: 30px; text-transform: uppercase; }
+.input-group { margin-bottom: 22px; }
+.input-group label { display: block; font-size: 0.8rem; color: var(--neon-blue); margin-bottom: 8px; text-transform: uppercase; }
+.input-group input, .input-group select {
+    width: 100%; padding: 12px 15px; background: rgba(10, 5, 20, 0.9);
+    border: 2px solid #41297a; border-radius: 8px; color: var(--neon-blue); font-size: 1rem; outline: none;
+}
+#login-btn {
+    width: 100%; padding: 14px; background: transparent; border: 2px solid var(--neon-green);
+    color: var(--neon-green); font-size: 1.1rem; font-weight: bold; border-radius: 8px; cursor: pointer; text-transform: uppercase;
+}
+#login-btn:hover { background: var(--neon-green); color: var(--dark-bg); box-shadow: 0 0 25px var(--neon-green); }
+
+/* ================= GAME SCREEN AREA ================= */
+.game-container { text-align: center; width: 100%; max-width: 750px; padding: 20px; }
+#welcome-heading { font-size: 2.2rem; color: var(--neon-blue); text-shadow: 0 0 15px var(--neon-blue); margin-bottom: 20px; }
+
+.score-board {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 25px;
+}
+@media (min-width: 600px) { .score-board { grid-template-columns: repeat(4, 1fr); } }
+
+.stat-box {
+    background: rgba(15, 9, 31, 0.8); padding: 12px 10px; border-radius: 8px;
+    border: 1px solid #41297a; font-size: 1rem; display: flex; flex-direction: column; align-items: center; gap: 4px;
+}
+.stat-box span { font-weight: bold; font-size: 1.2rem; color: #fff; }
+.high-score-box { border-color: var(--neon-yellow); color: var(--neon-yellow); }
+#record-holder { font-size: 0.7rem; color: #8a7fa4; }
+
+/* ================= LEVEL SELECTOR HARDWARE ================= */
+.level-selector {
+    margin-bottom: 25px;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #2b1b4f;
+}
+.level-selector label { font-size: 0.9rem; color: #8a7fa4; margin-right: 15px; text-transform: uppercase; }
+.radio-group { display: inline-flex; gap: 10px; margin-top: 5px; }
+.radio-group input[type="radio"] { display: none; }
+
+.lvl-btn {
+    padding: 8px 18px; border-radius: 6px; cursor: pointer; font-weight: bold;
+    border: 1px solid #41297a; background: #130a24; transition: all 0.2s ease; font-size: 0.85rem; text-transform: uppercase;
+}
+/* Radio check glow indicators */
+input[id="lvl-easy"]:checked + .lvl-btn { background: var(--neon-green); color: #000; box-shadow: 0 0 15px var(--neon-green); border-color: var(--neon-green); }
+input[id="lvl-medium"]:checked + .lvl-btn { background: var(--neon-yellow); color: #000; box-shadow: 0 0 15px var(--neon-yellow); border-color: var(--neon-yellow); }
+input[id="lvl-hard"]:checked + .lvl-btn { background: var(--neon-pink); color: #fff; box-shadow: 0 0 15px var(--neon-pink); border-color: var(--neon-pink); }
+
+#start-btn {
+    padding: 12px 40px; font-size: 1.2rem; background: var(--neon-pink); color: white;
+    border: none; border-radius: 30px; cursor: pointer; font-weight: bold; box-shadow: 0 0 20px var(--neon-pink); margin-bottom: 25px;
+}
+
+/* ================= THE 3D INTERACTIVE GRID ================= */
+.grid-wrapper { perspective: 1000px; margin-bottom: 35px; }
+.grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px;
+    background: radial-gradient(circle, #25144b 0%, #110924 100%);
+    padding: 35px; border-radius: 20px; border: 3px solid #4d2f9d;
+    box-shadow: 0 30px 50px rgba(0,0,0,0.7); transform: rotateX(30deg) rotateZ(-5deg); transform-style: preserve-3d;
+}
+.hole {
+    background: #06030c; height: 100px; border-radius: 50%; position: relative;
+    overflow: hidden; border: 4px solid #1c0e35; box-shadow: inset 0 15px 25px rgba(0,0,0,0.9), 0 5px 0px #4d2f9d; transform-style: preserve-3d;
+}
+.mole {
+    width: 100%; height: 100%; position: absolute; top: 100%; display: flex;
+    justify-content: center; align-items: center; font-size: 3.2rem; cursor: pointer;
+    transition: top 0.12s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 2; transform: translateZ(30px);
+}
+.mole.up { top: 5%; }
+.shadow { position: absolute; bottom: 5px; left: 15%; width: 70%; height: 12px; background: rgba(0,0,0,0.6); border-radius: 50%; z-index: 1; filter: blur(3px); opacity: 0; }
+.mole.up + .shadow { opacity: 1; }
+
+/* ================= HISTORY LIST BOARD PANEL ================= */
+.history-panel {
+    background: rgba(19, 11, 36, 0.9);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #321f5c;
+    text-align: left;
+}
+.history-panel h3 {
+    font-size: 1.1rem; color: var(--neon-blue); text-shadow: 0 0 8px var(--neon-blue); margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px;
+}
+table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid #241644; }
+th { color: #8a7fa4; text-transform: uppercase; font-size: 0.8rem; }
+td { color: #e2dff0; }
+tr:hover td { background: rgba(255, 255, 255, 0.02); }

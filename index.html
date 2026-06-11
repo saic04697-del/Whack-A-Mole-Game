@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Cyber-Hero Whack-A-Mole</title>
+    <link rel="stylesheet" href="stlye.css">
+</head>
+<body>
+
+    <div id="login-screen" class="login-container">
+        <form id="login-form" class="tilt-card">
+            <h2>HERO IDENTITY AUTH</h2>
+            <p class="subtitle">Secure Game Terminal Access</p>
+            
+            <div class="input-group">
+                <label for="username">Hero Code Name</label>
+                <input type="text" id="username" required placeholder="e.g., ApexRanger" autocomplete="off">
+            </div>
+
+            <div class="input-group">
+                <label for="password">Security Password</label>
+                <input type="password" id="password" required placeholder="••••••••">
+            </div>
+
+            <div class="input-group">
+                <label for="player-count">Active Players Assignment</label>
+                <select id="player-count">
+                    <option value="1">1 Player (Solo Op)</option>
+                    <option value="2">2 Players (Duo Strike)</option>
+                    <option value="3">3 Players (Fireteam)</option>
+                    <option value="4">4 Players (Full Squad)</option>
+                </select>
+            </div>
+
+            <button type="submit" id="login-btn">Initialize Matrix</button>
+        </form>
+    </div>
+
+    <div id="game-screen" class="game-container hidden">
+        <h1 id="welcome-heading">TACTICAL HUB</h1>
+        
+        <div class="score-board">
+            <div class="stat-box">Operative: <span id="current-user-tag">---</span></div>
+            <div class="stat-box">Score: <span id="score">0</span></div>
+            <div class="stat-box">Timer: <span id="time">15</span>s</div>
+            <div class="stat-box high-score-box">🏆 Record: <span id="high-score">0</span> <small id="record-holder">()</small></div>
+        </div>
+
+        <div class="level-selector">
+            <label>Difficulty Matrix:</label>
+            <div class="radio-group">
+                <input type="radio" id="lvl-easy" name="difficulty" value="easy" checked>
+                <label for="lvl-easy" class="lvl-btn easy">Easy</label>
+
+                <input type="radio" id="lvl-medium" name="difficulty" value="medium">
+                <label for="lvl-medium" class="lvl-btn medium">Medium</label>
+
+                <input type="radio" id="lvl-hard" name="difficulty" value="hard">
+                <label for="lvl-hard" class="lvl-btn hard">Hard</label>
+            </div>
+        </div>
+
+        <button id="start-btn">Launch Mission</button>
+
+        <div class="grid-wrapper">
+            <div class="grid">
+                <div class="hole"><div class="mole"></div><div class="shadow"></div></div>
+                <div class="hole"><div class="mole"></div><div class="shadow"></div></div>
+                <div class="hole"><div class="mole"></div><div class="shadow"></div></div>
+                <div class="hole"><div class="mole"></div><div class="shadow"></div></div>
+                <div class="hole"><div class="mole"></div><div class="shadow"></div></div>
+                <div class="hole"><div class="mole"></div><div class="shadow"></div></div>
+                <div class="hole"><div class="mole"></div><div class="shadow"></div></div>
+                <div class="hole"><div class="mole"></div><div class="shadow"></div></div>
+                <div class="hole"><div class="mole"></div><div class="shadow"></div></div>
+            </div>
+        </div>
+
+        <div class="history-panel">
+            <h3>📊 Recent Mission Logs</h3>
+            <table id="history-table">
+                <thead>
+                    <tr>
+                        <th>Agent</th>
+                        <th>Squad</th>
+                        <th>Level</th>
+                        <th>Final Score</th>
+                    </tr>
+                </thead>
+                <tbody id="history-rows">
+                    <tr><td colspan="4" style="color:#8a7fa4;">No active logs in registry.</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
